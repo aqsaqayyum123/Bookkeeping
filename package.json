@@ -1,0 +1,33 @@
+{
+  "name": "bookkeeping",
+  "version": "1.0.0",
+  "description": "“Bookeeping platform” is a portal where users can split their expenses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix main.js",
+    "format": "prettier -w ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aqsaqayyum123/Bookkeeping_Platform.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aqsaqayyum123/Bookkeeping_Platform/issues"
+  },
+  "homepage": "https://github.com/aqsaqayyum123/Bookkeeping_Platform#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.4.1"
+  }
+}
