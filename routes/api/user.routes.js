@@ -1,12 +1,19 @@
 const express = require("express");
 const router = express.Router();
 
-const userController = require("../controllers/user.controller");
+const userController = require("../../controllers/user.controller");
 /* User Router */
+/**
+ * @swagger
+ * tags:
+ *  name: Users
+ *  description: All user routes
+ */
 /**
  * @swagger
  * /signup:
  *  post:
+ *    tags: [Users]
  *    description: User to signup
  *    responses:
  *      '200':
@@ -18,6 +25,7 @@ router.post("/signup", userController.signUp);
  * @swagger
  * /logIn:
  *  post:
+ *    tags: [Users]
  *    description: User to login
  *    responses:
  *      '200':
@@ -29,6 +37,7 @@ router.post("/logIn", userController.logIn);
  * @swagger
  * /detail:
  *  get:
+ *    tags: [Users]
  *    description: User detail
  *    responses:
  *      '200':
@@ -40,6 +49,7 @@ router.get("/detail", userController.detail);
  * @swagger
  * /updateProfile:
  *  put:
+ *    tags: [Users]
  *    description: User profile api
  *    responses:
  *      '200':
@@ -51,6 +61,7 @@ router.put("/updateProfile", userController.updateProfile);
  * @swagger
  * /logOut:
  *  post:
+ *    tags: [Users]
  *    description: User logout api
  *    responses:
  *      '200':
