@@ -20,7 +20,6 @@ const swaggerOptions = {
 };
 
 const app = express();
-//require("dotenv").config();
 app.use(indexRoutes);
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
@@ -39,7 +38,6 @@ dbconnection();
 app.get("/", (req, res) => res.send("index"));
 
 try {
-  //const PORT = 5006;
   const PORT = process.env.PORT;
   app.listen(PORT, console.log(`listening on ${PORT}`));
 } catch (error) {
