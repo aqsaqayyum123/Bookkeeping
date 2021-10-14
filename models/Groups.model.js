@@ -1,6 +1,4 @@
-const {
-  Model
-} = require('sequelize');
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Groups extends Model {
     /**
@@ -10,23 +8,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.user, {
-        foreignKey: 'user_id',
+      this.belongsTo(models.Users, {
+        foreignKey: "id",
+        constraints: false,
       });
-      this.belongsToMany(models.friends, { 
-        through: "Friends_Groups" ,
-        foreignKey: 'friend_id',
+
+      this.belongsToMany(models.Friends, {
+        through: "Friends_Groups",
       });
     }
-  };
-  Groups.init({
-    name: DataTypes.STRING,
-    members: DataTypes.ARRAY(DataTypes.STRING),
-    image: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Groups',
-  });
+  }
+  Groups.init(
+    {
+      name: DataTypes.STRING,
+      members: DataTypes.ARRAY(DataTypes.STRING),
+      image: DataTypes.STRING,
+      user_id: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "Groups",
+    }
+  );
   return Groups;
 };

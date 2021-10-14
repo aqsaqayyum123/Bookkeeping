@@ -8,15 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.user, {
-        foreignKey: "user_id",
-      });
-      this.hasMany(models.expenses, {
-        foreignKey: "expense_id",
-      });
-      this.belongsToMany(models.groups, {
+      this.belongsTo(models.Users);
+      this.hasMany(models.Expenses);
+      this.belongsToMany(models.Groups, {
         through: "Friends_Groups",
-        foreignKey: "group_id",
       });
     }
   }
@@ -25,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       mobile: DataTypes.INTEGER,
-      invitestatus: DataTypes.ENUM,
+      invitestatus: DataTypes.ENUM("invited", "active", "inactive"),
       user_id: DataTypes.INTEGER,
       group_id: DataTypes.INTEGER,
       expense_id: DataTypes.INTEGER,

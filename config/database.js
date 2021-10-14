@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-
+//import Sequelize from "sequelize";
 module.exports = new Sequelize("bookkeeping", "postgres", "12345", {
   host: "localhost",
   dialect: "postgres",
