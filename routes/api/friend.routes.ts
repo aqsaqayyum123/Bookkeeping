@@ -78,4 +78,4 @@ router.delete("/friendDelete", friendController.friendDelete);
  */
 router.post("/sendInvite", friendController.sendInvite);
 
-module.exports = router;
+export default router;
