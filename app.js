@@ -1,7 +1,7 @@
 const express = require("express");
 const db = require("./config/database");
-
 const indexRoutes = require("./routes");
+require("dotenv").config();
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 const swaggerOptions = {
@@ -20,7 +20,7 @@ const swaggerOptions = {
 };
 
 const app = express();
-require("dotenv").config();
+//require("dotenv").config();
 app.use(indexRoutes);
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
@@ -37,8 +37,10 @@ async function dbconnection() {
 dbconnection();
 
 app.get("/", (req, res) => res.send("index"));
+
 try {
-  const PORT = 5006;
+  //const PORT = 5006;
+  const PORT = process.env.PORT;
   app.listen(PORT, console.log(`listening on ${PORT}`));
 } catch (error) {
   console.log(error);

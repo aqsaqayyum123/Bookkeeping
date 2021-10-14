@@ -1,4 +1,3 @@
-"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("Friends", {
@@ -18,16 +17,19 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       invitestatus: {
-        type: Sequelize.ENUM("invited", "active", "suspended"),
+        type: Sequelize.ENUM("invited", "active", "inactive"),
       },
       user_id: {
         type: Sequelize.INTEGER,
+        foreignKey: true,
       },
       group_id: {
         type: Sequelize.INTEGER,
+        foreignKey: true,
       },
       expense_id: {
         type: Sequelize.INTEGER,
+        foreignKey: true,
       },
       createdAt: {
         allowNull: false,

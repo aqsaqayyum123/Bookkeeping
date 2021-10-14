@@ -1,5 +1,7 @@
+const bodyParser = require("body-parser").json();
 const express = require("express");
 const router = express.Router();
+const auth = require("../../middelware/auth");
 
 const userController = require("../../controllers/user.controller");
 /* User Router */
@@ -19,7 +21,7 @@ const userController = require("../../controllers/user.controller");
  *      '200':
  *        description: user signup successfully
  */
-router.post("/signup", userController.signUp);
+router.post("/signUp", bodyParser, userController.signUp);
 /* User Router */
 /**
  * @swagger
@@ -31,7 +33,7 @@ router.post("/signup", userController.signUp);
  *      '200':
  *        description: user login successfully
  */
-router.post("/logIn", userController.logIn);
+router.post("/logIn", bodyParser, userController.logIn);
 /* User Router */
 /**
  * @swagger
@@ -43,7 +45,7 @@ router.post("/logIn", userController.logIn);
  *      '200':
  *        description: user detail fetched successfully
  */
-router.get("/detail", userController.detail);
+router.get("/detail", bodyParser, auth, userController.detail);
 /* User Router */
 /**
  * @swagger
@@ -55,18 +57,30 @@ router.get("/detail", userController.detail);
  *      '200':
  *        description: user profile updated successfully
  */
-router.put("/updateProfile", userController.updateProfile);
+router.put("/updateProfile", bodyParser, auth, userController.updateProfile);
 /* User Router */
 /**
  * @swagger
- * /logOut:
- *  post:
+ * /changePassword:
+ *  put:
  *    tags: [Users]
- *    description: User logout api
+ *    description: User change Password api
  *    responses:
  *      '200':
- *        description: user logout successfully
+ *        description: user password changed successfully
  */
-router.post("/logOut", userController.logOut);
+router.put("/changePassword", bodyParser, auth, userController.changePassword);
+/* User Router */
+/**
+ * @swagger
+ * /deleteUser:
+ *  delete:
+ *    tags: [Users]
+ *    description: User delete api
+ *    responses:
+ *      '200':
+ *        description: user deleted successfully
+ */
+router.delete("/deleteUser", bodyParser, auth, userController.deleteUser);
 
 module.exports = router;

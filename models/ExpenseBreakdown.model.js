@@ -1,6 +1,4 @@
-const {
-  Model
-} = require('sequelize');
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Expensebreakdown extends Model {
     /**
@@ -10,21 +8,41 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.expenses, {
-        foreignKey: 'expense_id',
-      });
+      this.belongsTo(models.Expenses);
     }
-  };
-  Expensebreakdown.init({
-    category: DataTypes.ENUM,
-    splittype: DataTypes.ENUM,
-    reminder: DataTypes.ARRAY(DataTypes.STRING),
-    repeates: DataTypes.ENUM,
-    notes: DataTypes.STRING,
-    expense_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Expensebreakdown',
-  });
+  }
+  Expensebreakdown.init(
+    {
+      category: DataTypes.ENUM(
+        "entertainment",
+        "food",
+        "home",
+        "life",
+        "utilities",
+        "transportation",
+        "general"
+      ),
+      splittype: DataTypes.ENUM(
+        "equally",
+        "exactamount",
+        "shares",
+        "adjustment"
+      ),
+      reminder: DataTypes.ARRAY(DataTypes.STRING),
+      repeates: DataTypes.ENUM(
+        "once",
+        "weekly",
+        "fortnightly",
+        "monthly",
+        "yearly"
+      ),
+      notes: DataTypes.STRING,
+      expense_id: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "Expensebreakdown",
+    }
+  );
   return Expensebreakdown;
 };
