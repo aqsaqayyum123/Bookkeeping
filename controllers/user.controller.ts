@@ -1,23 +1,26 @@
-const bcrypt = require("bcrypt");
-const db = require("../models");
-const valid = require("../validations/validation");
+import bcrypt from "bcrypt";
 
-const {
+import db from "../models";
+
+import * as valid from "../validations/validation";
+
+import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
-} = require("firebase/auth");
+} from "firebase/auth";
 
-const { initializeApp } = require("firebase/app");
-const {
+import { initializeApp } from "firebase/app";
+
+import {
   api_key,
   auth_domain,
   project_id,
   storage_bucket,
   sender_id,
   app_id,
-} = require("../config/firebase");
+} from "../config/firebase";
 
 const firebaseConfig = {
   apiKey: api_key,
@@ -30,12 +33,13 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-exports.signUp = async function (req, res, _next) {
+const signUp = async function (req: any, res: any, _next: any) {
   try {
     let auth;
     let userCredential;
     let firebaseUser;
     let token;
+    let uuid;
     const { error } = valid.validateUserSchema(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     //if phone number already exist
@@ -72,7 +76,7 @@ exports.signUp = async function (req, res, _next) {
       await sendEmailVerification(auth.currentUser);
       res.send(req, res, { user: newUser, msg: "verification email sent" });
     } catch (ex) {
-      for (i in ex.error) {
+      for (let i in ex.error) {
         return res.send(ex.error[i].message);
       }
     }
@@ -87,7 +91,7 @@ exports.signUp = async function (req, res, _next) {
   }
 };
 
-exports.logIn = async function (req, res, _next) {
+const logIn = async function (req, res, _next) {
   try {
     const { error } = valid.validateSignIn(req.body);
     let auth;
@@ -95,6 +99,7 @@ exports.logIn = async function (req, res, _next) {
     let firebaseUser;
     let uuid;
     let emailVerified;
+    let token;
     auth = getAuth();
     userCredential = await signInWithEmailAndPassword(
       auth,
@@ -134,19 +139,19 @@ exports.logIn = async function (req, res, _next) {
   }
 };
 
-exports.detail = async function (req, res) {
+const detail = async function (req, res) {
   const user = await db.Users.findOne({
     where: {
       id: req.body.id,
     },
     attributes: ["id", "name", "email", "mobile"],
   });
-  //console.log(user);
-  if (user.dataValues) return res.send(user);
+  //console.log("testingggggg", user);
+  if (user) return res.send(user);
   return res.status(404).send("No Data Found");
 };
 
-exports.updateProfile = async function (req, res) {
+const updateProfile = async function (req, res) {
   const { error } = valid.validateUpdate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   console.log("data:", req.body);
@@ -165,7 +170,7 @@ exports.updateProfile = async function (req, res) {
     .catch((err) => console.log("error:", err));
 };
 
-exports.changePassword = async function (req, res) {
+const changePassword = async function (req, res) {
   const { error } = valid.validateChangePassword(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   const user = await db.Users.findOne({
@@ -200,7 +205,7 @@ exports.changePassword = async function (req, res) {
         .catch((err) => console.log("err:", err));
       return;
     } catch (ex) {
-      for (i in ex.errors) {
+      for (let i in ex.errors) {
         return res.send(ex.errors[i].message);
       }
     }
@@ -209,7 +214,7 @@ exports.changePassword = async function (req, res) {
   }
 };
 
-exports.deleteUser = async function (req, res) {
+const deleteUser = async function (req, res) {
   try {
     const user = await db.Users.destroy({
       where: {
@@ -226,3 +231,13 @@ exports.deleteUser = async function (req, res) {
     console.log(ex);
   }
 };
+const userController = {
+  signUp,
+  logIn,
+  detail,
+  updateProfile,
+  changePassword,
+  deleteUser,
+};
+
+export default userController;

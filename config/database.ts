@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 //import Sequelize from "sequelize";
-module.exports = new Sequelize("bookkeeping", "postgres", "12345", {
+const databasecon = new Sequelize("bookkeeping", "postgres", "12345", {
   host: "localhost",
   dialect: "postgres",
 
@@ -10,3 +10,5 @@ module.exports = new Sequelize("bookkeeping", "postgres", "12345", {
     idle: 10000,
   },
 });
+
+export default databasecon;

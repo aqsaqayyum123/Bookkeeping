@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "moduleResolution": "node",
     "pretty": true,
     "sourceMap": true,
     "target": "es6",
@@ -9,20 +8,12 @@
     "outDir": "./dist",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "typeRoots": ["../node_modules/@types"]
   },
-  "include": ["cron.ts", "app.ts", "config/*.ts"],
-  //   "include": [
-  //     "app.ts",
-  //     "cron.ts",
-  //     "config/*.ts",
-  //     "controllers/*.ts",
-  //     "models/*.ts",
-  //     "middelware/*.ts",
-  //     "migrations/*.ts",
-  //     "routes/**/*.ts",
-  //     "seeders/**/*.ts",
-  //     "validations/*.ts"
-  //   ],
-  "exclude": ["node_modules", ".env", ".gitignore", "serviceAccountKey.json"]
+
+  "include": ["**/*.ts"],
+  "exclude": [".env", ".gitignore", "serviceAccountKey.json"],
+  "requireExtensions": true
 }

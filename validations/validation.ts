@@ -1,6 +1,6 @@
-const Joi = require("joi");
+import Joi from "joi";
 
-const validateUserSchema = (usr) => {
+export const validateUserSchema = (usr) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(50).required(),
     email: Joi.string().email({
@@ -15,7 +15,8 @@ const validateUserSchema = (usr) => {
   });
   return schema.validate(usr);
 };
-const validateSignIn = (usr) => {
+
+export const validateSignIn = (usr) => {
   const schema = Joi.object({
     email: Joi.string().email({
       minDomainSegments: 2,
@@ -26,7 +27,7 @@ const validateSignIn = (usr) => {
   return schema.validate(usr);
 };
 
-const validateUpdate = (usr) => {
+export const validateUpdate = (usr) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(50).required(),
     email: Joi.string().email({
@@ -38,18 +39,12 @@ const validateUpdate = (usr) => {
   });
   return schema.validate(usr);
 };
-const validateChangePassword = (cust) => {
+
+export const validateChangePassword = (cust) => {
   const schema = Joi.object({
     email: Joi.string().required(),
     oldPassword: Joi.string().min(8).max(200).required(),
     newPassword: Joi.string().min(8).max(200).required(),
   });
   return schema.validate(cust);
-};
-
-module.exports = {
-  validateUserSchema,
-  validateSignIn,
-  validateUpdate,
-  validateChangePassword,
 };

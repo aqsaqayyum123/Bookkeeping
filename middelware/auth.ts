@@ -1,6 +1,12 @@
-const admin = require("firebase-admin");
-const serviceAccount = require("../serviceAccountKey.json");
-admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+//const admin = require("firebase-admin");
+import admin from "firebase-admin";
+
+//const serviceAccount = require("../serviceAccountKey.json");
+import serviceAccount from "../serviceAccountKey.json";
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount as any),
+});
 
 async function auth(req, res, next) {
   const token = req.header("x-auth-token");
@@ -15,4 +21,5 @@ async function auth(req, res, next) {
     return res.status(400).send("Invalid token.");
   }
 }
-module.exports = auth;
+//module.exports = auth;
+export default auth;

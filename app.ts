@@ -1,20 +1,15 @@
-//const express = require("express");
 import express from "express";
 
-//const db = require("./config/database");
 import db from "./config/database";
 
-//const indexRoutes = require("./routes");
 import indexRoutes from "./routes";
 
-//require("dotenv").config();
 import dotenv from "dotenv";
 
 dotenv.config();
-//const swaggerJSDoc = require("swagger-jsdoc");
+
 import swaggerJSDoc from "swagger-jsdoc";
 
-//const swaggerUI = require("swagger-ui-express");
 import swaggerUI from "swagger-ui-express";
 
 const swaggerOptions = {
@@ -29,7 +24,7 @@ const swaggerOptions = {
       servers: ["http://localhost:5000"],
     },
   },
-  apis: ["./routes/api/*.routes.js"],
+  apis: ["./routes/api/*.routes.ts"],
 };
 
 const app = express();

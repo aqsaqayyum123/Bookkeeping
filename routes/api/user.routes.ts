@@ -1,9 +1,12 @@
-const bodyParser = require("body-parser").json();
-const express = require("express");
-const router = express.Router();
-const auth = require("../../middelware/auth");
+import bodyParser from "body-parser";
 
-const userController = require("../../controllers/user.controller");
+import express from "express";
+
+const router = express.Router();
+
+import auth from "../../middelware/auth";
+
+import userController from "../../controllers/user.controller";
 /* User Router */
 /**
  * @swagger
@@ -21,7 +24,7 @@ const userController = require("../../controllers/user.controller");
  *      '200':
  *        description: user signup successfully
  */
-router.post("/signUp", bodyParser, userController.signUp);
+router.post("/signUp", bodyParser.json(), userController.signUp);
 /* User Router */
 /**
  * @swagger
@@ -33,7 +36,7 @@ router.post("/signUp", bodyParser, userController.signUp);
  *      '200':
  *        description: user login successfully
  */
-router.post("/logIn", bodyParser, userController.logIn);
+router.post("/logIn", bodyParser.json(), userController.logIn);
 /* User Router */
 /**
  * @swagger
@@ -45,7 +48,7 @@ router.post("/logIn", bodyParser, userController.logIn);
  *      '200':
  *        description: user detail fetched successfully
  */
-router.get("/detail", bodyParser, auth, userController.detail);
+router.get("/detail", bodyParser.json(), auth, userController.detail);
 /* User Router */
 /**
  * @swagger
@@ -57,7 +60,12 @@ router.get("/detail", bodyParser, auth, userController.detail);
  *      '200':
  *        description: user profile updated successfully
  */
-router.put("/updateProfile", bodyParser, auth, userController.updateProfile);
+router.put(
+  "/updateProfile",
+  bodyParser.json(),
+  auth,
+  userController.updateProfile
+);
 /* User Router */
 /**
  * @swagger
@@ -69,7 +77,12 @@ router.put("/updateProfile", bodyParser, auth, userController.updateProfile);
  *      '200':
  *        description: user password changed successfully
  */
-router.put("/changePassword", bodyParser, auth, userController.changePassword);
+router.put(
+  "/changePassword",
+  bodyParser.json(),
+  auth,
+  userController.changePassword
+);
 /* User Router */
 /**
  * @swagger
@@ -81,6 +94,11 @@ router.put("/changePassword", bodyParser, auth, userController.changePassword);
  *      '200':
  *        description: user deleted successfully
  */
-router.delete("/deleteUser", bodyParser, auth, userController.deleteUser);
+router.delete(
+  "/deleteUser",
+  bodyParser.json(),
+  auth,
+  userController.deleteUser
+);
 
-module.exports = router;
+export default router;

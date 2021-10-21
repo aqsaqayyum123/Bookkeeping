@@ -1,5 +1,9 @@
-const { options } = require("joi");
-const { Model } = require("sequelize");
+//const { options } = require("joi");
+import options from "joi";
+
+//const { Model } = require("sequelize");
+import Model from "sequelize";
+
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     /**
