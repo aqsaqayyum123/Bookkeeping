@@ -1,7 +1,5 @@
-//const admin = require("firebase-admin");
 import admin from "firebase-admin";
 
-//const serviceAccount = require("../serviceAccountKey.json");
 import serviceAccount from "../serviceAccountKey.json";
 
 admin.initializeApp({
@@ -21,5 +19,5 @@ async function auth(req, res, next) {
     return res.status(400).send("Invalid token.");
   }
 }
-//module.exports = auth;
+
 export default auth;

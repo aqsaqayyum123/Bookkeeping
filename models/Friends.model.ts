@@ -1,7 +1,7 @@
-import Model from "sequelize";
+import { Model } from "sequelize";
 
 module.exports = (sequelize, DataTypes) => {
-  class Groups extends Model {
+  class Friends extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,27 +9,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Users, {
-        foreignKey: "id",
-        constraints: false,
-      });
-
-      this.belongsToMany(models.Friends, {
+      this.belongsTo(models.Users);
+      this.hasMany(models.Expenses);
+      this.belongsToMany(models.Groups, {
         through: "Friends_Groups",
       });
     }
   }
-  Groups.init(
+  Friends.init(
     {
       name: DataTypes.STRING,
-      members: DataTypes.ARRAY(DataTypes.STRING),
-      image: DataTypes.STRING,
+      email: DataTypes.STRING,
+      mobile: DataTypes.INTEGER,
+      invitestatus: DataTypes.ENUM("invited", "active", "inactive"),
       user_id: DataTypes.INTEGER,
+      group_id: DataTypes.INTEGER,
+      expense_id: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "Groups",
+      modelName: "Friends",
     }
   );
-  return Groups;
+  return Friends;
 };

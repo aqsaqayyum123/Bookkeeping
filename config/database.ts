@@ -1,7 +1,12 @@
-const Sequelize = require("sequelize");
-//import Sequelize from "sequelize";
-const databasecon = new Sequelize("bookkeeping", "postgres", "12345", {
-  host: "localhost",
+import { Sequelize } from "sequelize";
+
+const database = process.env.DB_NAME as string;
+const username = process.env.DB_USER as string;
+const dbHost = process.env.DB_HOST;
+const password = process.env.DB_PASSWORD;
+
+const sequelizeConnection = new Sequelize(database, username, password, {
+  host: dbHost,
   dialect: "postgres",
 
   pool: {
@@ -11,4 +16,4 @@ const databasecon = new Sequelize("bookkeeping", "postgres", "12345", {
   },
 });
 
-export default databasecon;
+export default sequelizeConnection;

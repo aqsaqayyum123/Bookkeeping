@@ -1,6 +1,21 @@
 import bcrypt from "bcrypt";
 
+// import db from "../models";
+
+//import { Users } from "../models";
+
+//const db = require("./models/index");
+// import db from "../models";
+// const User = db.User;
+
+// import DB from '../../database/models';
+
+// const { User } = DB; // Property 'User' does not exist on type 'typeof db'
+
 import db from "../models";
+
+const DB: any = db;
+const { Users } = DB;
 
 import * as valid from "../validations/validation";
 
@@ -33,7 +48,7 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-const signUp = async function (req: any, res: any, _next: any) {
+const signUp = async function (req, res, _next) {
   try {
     let auth;
     let userCredential;
@@ -43,7 +58,7 @@ const signUp = async function (req: any, res: any, _next: any) {
     const { error } = valid.validateUserSchema(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     //if phone number already exist
-    const user = await db.Users.findOne({
+    const user = await Users.findOne({
       where: {
         email: req.body.email,
       },
@@ -72,7 +87,7 @@ const signUp = async function (req: any, res: any, _next: any) {
     newUser.password = await bcrypt.hash(newUser.password, salt);
     let addUser = null;
     try {
-      addUser = await db.Users.create(newUser);
+      addUser = await Users.create(newUser);
       await sendEmailVerification(auth.currentUser);
       res.send(req, res, { user: newUser, msg: "verification email sent" });
     } catch (ex) {
@@ -111,7 +126,7 @@ const logIn = async function (req, res, _next) {
     emailVerified = firebaseUser.emailVerified;
     if (error) return res.status(400).send(error.details[0].message);
     token = await auth.currentUser.getIdToken();
-    const user = await db.Users.findAll({
+    const user = await Users.findAll({
       where: {
         uuid: uuid,
         email: req.body.email,
@@ -127,7 +142,7 @@ const logIn = async function (req, res, _next) {
     if (!matchPassword)
       return res.status(400).send("Invalid email or password!");
     if (emailVerified && user.isVerified === false) {
-      await db.Users.update({ isVerified: true }, { where: { uuid: uuid } });
+      await Users.update({ isVerified: true }, { where: { uuid: uuid } });
       user.isVerified = true;
     }
     return res.send({
@@ -140,7 +155,7 @@ const logIn = async function (req, res, _next) {
 };
 
 const detail = async function (req, res) {
-  const user = await db.Users.findOne({
+  const user = await Users.findOne({
     where: {
       id: req.body.id,
     },
@@ -155,7 +170,7 @@ const updateProfile = async function (req, res) {
   const { error } = valid.validateUpdate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   console.log("data:", req.body);
-  db.Users.update(
+  Users.update(
     { name: req.body.name, email: req.body.email, mobile: req.body.mobile },
     { where: { id: req.body.id } }
   )
@@ -173,7 +188,7 @@ const updateProfile = async function (req, res) {
 const changePassword = async function (req, res) {
   const { error } = valid.validateChangePassword(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  const user = await db.Users.findOne({
+  const user = await Users.findOne({
     where: {
       email: req.body.email,
     },
@@ -192,7 +207,7 @@ const changePassword = async function (req, res) {
     try {
       const salt = await bcrypt.genSalt(10);
       newUser.password = await bcrypt.hash(newUser.password, salt);
-      db.Users.update(
+      Users.update(
         { password: newUser.password },
         { where: { email: req.body.email } }
       )
@@ -216,7 +231,7 @@ const changePassword = async function (req, res) {
 
 const deleteUser = async function (req, res) {
   try {
-    const user = await db.Users.destroy({
+    const user = await Users.destroy({
       where: {
         id: req.body.id,
       },
