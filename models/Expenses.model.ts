@@ -1,6 +1,7 @@
-import { Model } from "sequelize";
+// tslint:disable-next-line:no-var-requires
+const { Model } = require("sequelize");
 
-module.exports = (sequelize, DataTypes) => {
+export const Expenses = (sequelize, DataTypes) => {
   class Expenses extends Model {
     /**
      * Helper method for defining associations.
