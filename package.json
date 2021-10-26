@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.ts",
+    "build": "./node_modules/.bin/tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix --ignore-pattern 'node_modules/*'",
     "format": "prettier -w ."
@@ -32,8 +33,10 @@
   "homepage": "https://github.com/aqsaqayyum123/Bookkeeping_Platform#readme",
   "dependencies": {
     "@firebase/app-types": "^0.7.0",
+    "@types/node": "^16.11.6",
     "@types/react": "^17.0.30",
     "@types/react-native": "^0.65.8",
+    "@types/validator": "^13.6.5",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",

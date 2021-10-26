@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-var-requires
-const { Model } = require("sequelize");
+import { Model } from "sequelize";
 
 module.exports = (sequelize, DataTypes) => {
   class Friends_Groups extends Model {

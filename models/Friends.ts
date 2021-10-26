@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-var-requires
-const { Model } = require("sequelize");
+import { Model } from "sequelize";
 
 module.exports = (sequelize, DataTypes) => {
   class Friends extends Model {
@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Users);
-      this.hasMany(models.Expenses);
-      this.belongsToMany(models.Groups, {
-        through: "Friends_Groups",
-      });
+      // this.belongsTo(models.Users);
+      // this.hasMany(models.Expenses);
+      // this.belongsToMany(models.Groups, {
+      //   through: "Friends_Groups",
+      // });
     }
   }
   Friends.init(

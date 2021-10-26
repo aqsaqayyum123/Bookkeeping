@@ -2,7 +2,9 @@
 const fs = require("fs");
 // tslint:disable-next-line:no-var-requires
 const path = require("path");
-
+interface ImportedModel {
+  name: string;
+}
 // tslint:disable-next-line:no-var-requires
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
@@ -24,21 +26,49 @@ if (config.use_env_variable) {
     config
   );
 }
+
+// let db: any = {}
+
+// const modelPath = `${process.cwd()}/models`;
+// console.log("ok",modelPath);
+
+// fs.readdirSync(modelPath).forEach((file: String) => {
+//   if (file !== 'index.js' && path.extname(file) === '.ts') {
+//     let model: ImportedModel = sequelize.import(path.join(modelPath, file))
+//     console.log(model);
+
+//     db[model.name] = model
+//   }
+// })
+
+// Object.keys(db).forEach((modelName: string) => {
+//   if ('associate' in db[modelName]) {
+//     db[modelName].associate(db)
+//   }
 const modals = fs.readdirSync(__dirname).filter((file) => {
   return (
-    file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+    "dist" + file.indexOf(".") !== "" &&
+    file !== basename &&
+    file.slice(-3) === ".ts"
   );
 });
+//console.log(modals);
 
 modals.forEach((file) => {
-  console.log("test1", file);
-  const model = require(path.join(__dirname, file))(
+  //console.log("test1", file);
+  // const model = require(path.join(__dirname, file))(
+  //   sequelize,
+  //   Sequelize.DataTypes
+  // );
+  //console.log(file);
+
+  let modelName: ImportedModel = require(`../models/${file}`)(
     sequelize,
     Sequelize.DataTypes
   );
-  console.log("modelssss::", model);
-  db[model.name] = model;
-  console.log(db[model.name]);
+  //console.log("modelssss::", modelName);
+  db[modelName.name] = modelName;
+  //console.log(db[modelName.name]);
 });
 
 Object.keys(db).forEach((modelName) => {

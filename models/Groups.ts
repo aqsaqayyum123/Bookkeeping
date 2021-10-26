@@ -1,5 +1,6 @@
 // tslint:disable-next-line:no-var-requires
-const { Model } = require("sequelize");
+import { Model } from "sequelize";
+//import User from "../models/User";
 
 module.exports = (sequelize, DataTypes) => {
   class Groups extends Model {
@@ -10,14 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Users, {
-        foreignKey: "id",
-        constraints: false,
-      });
-
-      this.belongsToMany(models.Friends, {
-        through: "Friends_Groups",
-      });
+      // this.belongsTo(models.Users, {
+      //   foreignKey: "id",
+      //   constraints: false,
+      // });
+      // this.belongsToMany(models.Friends, {
+      //   through: "Friends_Groups",
+      // });
     }
   }
   Groups.init(

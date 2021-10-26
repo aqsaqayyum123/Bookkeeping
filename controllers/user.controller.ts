@@ -46,9 +46,9 @@ const signUp = async function (req, res, _next) {
     //if phone number already exist
     //console.log("its working");
     console.log(req.body);
-    console.log("dbbb", db.Users);
+    console.log("dbbb", db.User);
 
-    const user = await db.Users.findOne({
+    const user = await db.User.findOne({
       where: {
         email: req.body.email,
       },
@@ -77,7 +77,7 @@ const signUp = async function (req, res, _next) {
     newUser.password = await bcrypt.hash(newUser.password, salt);
     let addUser = null;
     try {
-      addUser = await db.Users.create(newUser);
+      addUser = await db.User.create(newUser);
       await sendEmailVerification(auth.currentUser);
       res.send(req, res, { user: newUser, msg: "verification email sent" });
     } catch (ex) {
