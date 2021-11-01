@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
-const friendController = require("../../controllers/friend.controller");
+const friendController = require('../../controllers/friend.controller');
 
 /* Friend Router */
 /**
@@ -21,7 +21,7 @@ const friendController = require("../../controllers/friend.controller");
  *      '200':
  *        description: friends list fetched successfully
  */
-router.get("/friendList", friendController.friendList);
+router.get('/friendList', friendController.friendList);
 /**
  * @swagger
  * /friendDetail:
@@ -32,7 +32,7 @@ router.get("/friendList", friendController.friendList);
  *      '200':
  *        description: friend detail fetched successfully
  */
-router.get("/friendDetail", friendController.friendDetail);
+router.get('/friendDetail', friendController.friendDetail);
 /**
  * @swagger
  * /friendAdd:
@@ -43,7 +43,7 @@ router.get("/friendDetail", friendController.friendDetail);
  *      '200':
  *        description: friend added successfully
  */
-router.post("/friendAdd", friendController.friendAdd);
+router.post('/friendAdd', friendController.friendAdd);
 /**
  * @swagger
  * /friendUpdate:
@@ -54,7 +54,7 @@ router.post("/friendAdd", friendController.friendAdd);
  *      '200':
  *        description: friend updated successfully
  */
-router.put("/friendUpdate", friendController.friendUpdate);
+router.put('/friendUpdate', friendController.friendUpdate);
 /**
  * @swagger
  * /friendDelete:
@@ -65,7 +65,7 @@ router.put("/friendUpdate", friendController.friendUpdate);
  *      '200':
  *        description: friend deleted successfully
  */
-router.delete("/friendDelete", friendController.friendDelete);
+router.delete('/friendDelete', friendController.friendDelete);
 /**
  * @swagger
  * /sendInvite:
@@ -76,6 +76,6 @@ router.delete("/friendDelete", friendController.friendDelete);
  *      '200':
  *        description: friends invited successfully
  */
-router.post("/sendInvite", friendController.sendInvite);
+router.post('/sendInvite', friendController.sendInvite);
 
 module.exports = router;

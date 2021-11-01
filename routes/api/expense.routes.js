@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const expenseController = require("../../controllers/expense.controller");
+const expenseController = require('../../controllers/expense.controller');
 
 /* Expense Router */
 /**
@@ -20,7 +20,7 @@ const expenseController = require("../../controllers/expense.controller");
  *      '200':
  *        description: expense list fetched successfully
  */
-router.get("/expenseList", expenseController.expenseList);
+router.get('/expenseList', expenseController.expenseList);
 /**
  * @swagger
  * /expenseDetail:
@@ -31,7 +31,7 @@ router.get("/expenseList", expenseController.expenseList);
  *      '200':
  *        description: expense detail fetched successfully
  */
-router.get("/expenseDetail", expenseController.expenseDetail);
+router.get('/expenseDetail', expenseController.expenseDetail);
 /**
  * @swagger
  * /expenseAdd:
@@ -42,7 +42,7 @@ router.get("/expenseDetail", expenseController.expenseDetail);
  *      '200':
  *        description: expense added successfully
  */
-router.post("/expenseAdd", expenseController.expenseAdd);
+router.post('/expenseAdd', expenseController.expenseAdd);
 /**
  * @swagger
  * /expenseUpdate:
@@ -53,7 +53,7 @@ router.post("/expenseAdd", expenseController.expenseAdd);
  *      '200':
  *        description: expense updated successfully
  */
-router.put("/expenseUpdate", expenseController.expenseUpdate);
+router.put('/expenseUpdate', expenseController.expenseUpdate);
 /**
  * @swagger
  * /expenseDelete:
@@ -64,6 +64,6 @@ router.put("/expenseUpdate", expenseController.expenseUpdate);
  *      '200':
  *        description: expense deleted successfully
  */
-router.delete("/expenseDelete", expenseController.expenseDelete);
+router.delete('/expenseDelete', expenseController.expenseDelete);
 
 module.exports = router;

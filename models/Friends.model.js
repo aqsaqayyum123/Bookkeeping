@@ -1,4 +1,4 @@
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Friends extends Model {
     /**
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Users);
       this.hasMany(models.Expenses);
       this.belongsToMany(models.Groups, {
-        through: "Friends_Groups",
+        through: 'Friends_Groups',
       });
     }
   }
@@ -20,14 +20,14 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       mobile: DataTypes.INTEGER,
-      invitestatus: DataTypes.ENUM("invited", "active", "inactive"),
+      invitestatus: DataTypes.ENUM('invited', 'active', 'inactive'),
       user_id: DataTypes.INTEGER,
       group_id: DataTypes.INTEGER,
       expense_id: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "Friends",
+      modelName: 'Friends',
     }
   );
   return Friends;

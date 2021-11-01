@@ -1,11 +1,11 @@
-const Joi = require("joi");
+const Joi = require('joi');
 
 const validateUserSchema = (usr) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(50).required(),
     email: Joi.string().email({
       minDomainSegments: 2,
-      tlds: { allow: ["com", "net"] },
+      tlds: { allow: ['com', 'net'] },
     }),
     password: Joi.string()
       .required()
@@ -19,7 +19,7 @@ const validateSignIn = (usr) => {
   const schema = Joi.object({
     email: Joi.string().email({
       minDomainSegments: 2,
-      tlds: { allow: ["com", "net"] },
+      tlds: { allow: ['com', 'net'] },
     }),
     password: Joi.string().min(8).max(200).required(),
   });
@@ -31,7 +31,7 @@ const validateUpdate = (usr) => {
     name: Joi.string().min(3).max(50).required(),
     email: Joi.string().email({
       minDomainSegments: 2,
-      tlds: { allow: ["com", "net"] },
+      tlds: { allow: ['com', 'net'] },
     }),
     mobile: Joi.number().min(12).max(13),
     id: Joi.number().min(1).max(1000),

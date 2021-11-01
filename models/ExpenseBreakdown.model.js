@@ -1,4 +1,4 @@
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Expensebreakdown extends Model {
     /**
@@ -14,34 +14,34 @@ module.exports = (sequelize, DataTypes) => {
   Expensebreakdown.init(
     {
       category: DataTypes.ENUM(
-        "entertainment",
-        "food",
-        "home",
-        "life",
-        "utilities",
-        "transportation",
-        "general"
+        'entertainment',
+        'food',
+        'home',
+        'life',
+        'utilities',
+        'transportation',
+        'general'
       ),
       splittype: DataTypes.ENUM(
-        "equally",
-        "exactamount",
-        "shares",
-        "adjustment"
+        'equally',
+        'exactamount',
+        'shares',
+        'adjustment'
       ),
       reminder: DataTypes.ARRAY(DataTypes.STRING),
       repeates: DataTypes.ENUM(
-        "once",
-        "weekly",
-        "fortnightly",
-        "monthly",
-        "yearly"
+        'once',
+        'weekly',
+        'fortnightly',
+        'monthly',
+        'yearly'
       ),
       notes: DataTypes.STRING,
       expense_id: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "Expensebreakdown",
+      modelName: 'Expensebreakdown',
     }
   );
   return Expensebreakdown;

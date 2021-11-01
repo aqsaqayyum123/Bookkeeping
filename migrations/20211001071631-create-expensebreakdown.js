@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Expensebreakdown", {
+    await queryInterface.createTable('Expensebreakdown', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,28 +9,28 @@ module.exports = {
       },
       category: {
         type: Sequelize.ENUM(
-          "entertainment",
-          "food",
-          "home",
-          "life",
-          "utilities",
-          "transportation",
-          "general"
+          'entertainment',
+          'food',
+          'home',
+          'life',
+          'utilities',
+          'transportation',
+          'general'
         ),
       },
       splittype: {
-        type: Sequelize.ENUM("equally", "exactamount", "shares", "adjustment"),
+        type: Sequelize.ENUM('equally', 'exactamount', 'shares', 'adjustment'),
       },
       reminder: {
         type: Sequelize.ARRAY(Sequelize.STRING),
       },
       repeates: {
         type: Sequelize.ENUM(
-          "once",
-          "weekly",
-          "fortnightly",
-          "monthly",
-          "yearly"
+          'once',
+          'weekly',
+          'fortnightly',
+          'monthly',
+          'yearly'
         ),
       },
       notes: {
@@ -51,6 +51,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Expensebreakdown");
+    await queryInterface.dropTable('Expensebreakdown');
   },
 };
