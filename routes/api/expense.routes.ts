@@ -66,4 +66,4 @@ router.put("/expenseUpdate", expenseController.expenseUpdate);
  */
 router.delete("/expenseDelete", expenseController.expenseDelete);
 
-module.exports = router;
+export default router;

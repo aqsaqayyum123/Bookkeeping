@@ -1,26 +1,33 @@
-const express = require("express");
-const db = require("./config/database");
+import express from "express";
 
-const indexRoutes = require("./routes");
-const swaggerJSDoc = require("swagger-jsdoc");
-const swaggerUI = require("swagger-ui-express");
+import db from "./config/database";
+
+import indexRoutes from "./routes";
+
+import dotenv from "dotenv";
+
+dotenv.config();
+
+import swaggerJSDoc from "swagger-jsdoc";
+
+import swaggerUI from "swagger-ui-express";
+
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
       title: "Backend APIS",
       description: "API'S Information in detail",
+      version: "1.0.0",
       contact: {
         name: "Developer",
       },
       servers: ["http://localhost:5000"],
     },
   },
-  // []
-  apis: ["./routes/api/*.routes.js"],
+  apis: ["./routes/api/*.routes.ts"],
 };
 
 const app = express();
-require("dotenv").config();
 app.use(indexRoutes);
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
@@ -37,9 +44,11 @@ async function dbconnection() {
 dbconnection();
 
 app.get("/", (req, res) => res.send("index"));
+
 try {
-  const PORT = 5006;
-  app.listen(PORT, console.log(`listening on ${PORT}`));
+  const PORT = process.env.PORT || 3001;
+  app.listen(PORT);
+  console.log(`listening on ${PORT}`);
 } catch (error) {
   console.log(error);
 }

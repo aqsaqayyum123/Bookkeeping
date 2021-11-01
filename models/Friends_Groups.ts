@@ -1,6 +1,6 @@
-const {
-  Model
-} = require('sequelize');
+// tslint:disable-next-line:no-var-requires
+import { Model } from "sequelize";
+
 module.exports = (sequelize, DataTypes) => {
   class Friends_Groups extends Model {
     /**
@@ -11,13 +11,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  Friends_Groups.init({
-    friend_id: DataTypes.INTEGER,
-    group_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Friends_Groups',
-  });
+  }
+  Friends_Groups.init(
+    {
+      friend_id: DataTypes.INTEGER,
+      group_id: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "Friends_Groups",
+    }
+  );
   return Friends_Groups;
 };

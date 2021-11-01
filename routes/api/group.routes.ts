@@ -67,4 +67,4 @@ router.put("/groupUpdate", groupController.groupUpdate);
  */
 router.delete("/groupDelete", groupController.groupDelete);
 
-module.exports = router;
+export default router;
