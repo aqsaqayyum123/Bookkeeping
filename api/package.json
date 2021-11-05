@@ -4,9 +4,11 @@
   "description": "“Bookeeping platform” is a portal where users can split their expenses",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix --ignore-pattern 'node_modules/*'",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "build": "./node_modules/.bin/tsc"
   },
   "husky": {
     "hooks": {
