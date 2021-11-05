@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Friends", {
+    await queryInterface.createTable('Friends', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       invitestatus: {
-        type: Sequelize.ENUM("invited", "active", "inactive"),
+        type: Sequelize.ENUM('invited', 'active', 'inactive'),
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -42,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Friends");
+    await queryInterface.dropTable('Friends');
   },
 };

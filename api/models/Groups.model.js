@@ -1,4 +1,4 @@
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Groups extends Model {
     /**
@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Users, {
-        foreignKey: "id",
+        foreignKey: 'id',
         constraints: false,
       });
 
       this.belongsToMany(models.Friends, {
-        through: "Friends_Groups",
+        through: 'Friends_Groups',
       });
     }
   }
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Groups",
+      modelName: 'Groups',
     }
   );
   return Groups;

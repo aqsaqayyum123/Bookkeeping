@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
-const groupController = require("../../controllers/group.controller");
+const groupController = require('../../controllers/group.controller');
 
 /* Group Router */
 /**
@@ -21,7 +21,7 @@ const groupController = require("../../controllers/group.controller");
  *      '200':
  *        description: groups list fetched successfully
  */
-router.get("/groupList", groupController.groupList);
+router.get('/groupList', groupController.groupList);
 /**
  * @swagger
  * /groupDetail:
@@ -32,7 +32,7 @@ router.get("/groupList", groupController.groupList);
  *      '200':
  *        description: group detail fetched successfully
  */
-router.get("/groupDetail", groupController.groupDetail);
+router.get('/groupDetail', groupController.groupDetail);
 /**
  * @swagger
  * /groupAdd:
@@ -43,7 +43,7 @@ router.get("/groupDetail", groupController.groupDetail);
  *      '200':
  *        description: group added successfully
  */
-router.post("/groupAdd", groupController.groupAdd);
+router.post('/groupAdd', groupController.groupAdd);
 /**
  * @swagger
  * /groupUpdate:
@@ -54,7 +54,7 @@ router.post("/groupAdd", groupController.groupAdd);
  *      '200':
  *        description: group updated successfully
  */
-router.put("/groupUpdate", groupController.groupUpdate);
+router.put('/groupUpdate', groupController.groupUpdate);
 /**
  * @swagger
  * /groupDelete:
@@ -65,6 +65,6 @@ router.put("/groupUpdate", groupController.groupUpdate);
  *      '200':
  *        description: group deleted successfully
  */
-router.delete("/groupDelete", groupController.groupDelete);
+router.delete('/groupDelete', groupController.groupDelete);
 
 module.exports = router;
